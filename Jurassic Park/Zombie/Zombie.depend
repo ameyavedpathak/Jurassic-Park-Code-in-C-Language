@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1506407479 source:c:\users\rajendra vedpathak\codec\zombie\main.c
+	<stdlib.h>
+	<sys/types.h>
+	<unistd.h>
+

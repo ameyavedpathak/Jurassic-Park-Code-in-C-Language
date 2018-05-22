@@ -1,0 +1,39 @@
+Problem Statement:
+
+Jurassic Park
+
+Jurassic Park consists of a dinosaur museum and a park for safari tiding.  There are n passengers and m single-passenger cars. Passengers wander around the museum for a while, then line up to take a ride in a safari car.  When a car is available, it loads the one passenger it can hold and rides around the park for a random amount of time.  If the m cars are all out riding passenger around, the passenger who wants to ride waits; if a car is ready to load but there are no waiting passengers, then the car waits.  Use semaphores to synchronize the n passenger threads/processes and the m car threads/processes.
+
+***********************************DESIGN***********************************
+
+Theme of the project is to get along with number of guests and number of available rides with the help of semaphore. To show working of this project i have used two semaphores named as sem_guest for available guests in park and sem_ride for rides available for safari in park. For termination of the program i have used variable TRIPS so that after serving guests for particular time program can terminate.
+
+Working as follows:
+1. Take input from user for Guests, Rides, Trips, also validating that there is non negative numbers entered by user.  
+2. We then initialize the mentioned semaphores, sem_ride, sem_guest for that i have introduced sem_init() method.
+3. After taking inputs from user we have created pthread_create() method in which threads are created for guests and rides available.
+4. Created guest method, so that we can get the current status of thread and locking of semaphore.
+5. Created methods like sem_post(&ride) and sem_wait(&sem_guest) for unlocking
+6. Created methods like sem_wait(&sem_ride) and sem_post(&sem_guest) for ride processing.
+
+
+***********************************Questions***********************************
+
+Q1. How many threads/processes are there?
+Ans: Threads are equal to number of rides + guests, if we choose guests = 5 and rides = 5 then the total number of threads that created is 10.
+
+
+Q2.	What does each thread/process simulate?
+Ans: It represents the current status of the guests and rides that are available, also the number of trips that are covered so far. 
+
+Q3.	Will each thread/process be blocked at some time of simulation? If yes, explain the circumstances.
+Ans: Yes, as guest has to wait untill the ride is available, also when guest take ride.
+
+Q4.	When will a blocked thread/process be waked up, and by whom?
+Ans:	1. When ride is available for guest the blocked thread will be active.
+		2. When guests are aviable for ride the blocked thread will be active.
+
+Q5.	How many semaphores are there in your project, what is the purpose for having each?
+Ans: There are two semaphores that are used to execute this functionlity.
+		1. sem_ride for safari car.
+		2. sem_guest for the customers that are present in the museum.	
